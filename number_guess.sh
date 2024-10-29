@@ -15,11 +15,12 @@ then
   # New user
   echo "Welcome, $USERNAME! It looks like this is your first time here."
   INSERT_USER=$($PSQL "INSERT INTO users(username) VALUES('$USERNAME')")
+  USER_ID=$($PSQL "SELECT user_id FROM users WHERE username='$USERNAME'")
 else
   # Returning user
-  GAMES_PLAYED=$($PSQL "SELECT games_played FROM users WHERE username='$USERNAME'")
-  BEST_GAME=$($PSQL "SELECT best_game FROM users WHERE username='$USERNAME'")
-  echo "Welcome back, $USERNAME! You have played $GAMES_PLAYED games, and your best game took $BEST_GAME guesses."
+  GAMES_PLAYED=$($PSQL "SELECT games_played FROM users WHERE user_id=$USER_ID")
+  BEST_GAME=$($PSQL "SELECT best_game FROM users WHERE user_id=$USER_ID")
+  echo "Welcome back, $USERNAME! You have played $GAMES_PLAYED games, and your best game took $BEST_GAME guesses., with $USERNAME being a users name from the database, $GAMES_PLAYED being the total number of games that user has played, and $BEST_GAME being the fewest number of guesses it took that user to win the game"
 fi
 
 # Generate a random number between 1 and 1000
@@ -46,11 +47,11 @@ do
     echo "You guessed it in $NUMBER_OF_GUESSES tries. The secret number was $SECRET_NUMBER. Nice job!"
     
     # Update the user's game stats in the database
-    UPDATE_GAMES_PLAYED=$($PSQL "UPDATE users SET games_played = games_played + 1 WHERE username='$USERNAME'")
+    UPDATE_GAMES_PLAYED=$($PSQL "UPDATE users SET games_played = games_played + 1 WHERE user_id=$USER_ID")
     
     if [[ -z $BEST_GAME || $NUMBER_OF_GUESSES -lt $BEST_GAME ]]
     then
-      UPDATE_BEST_GAME=$($PSQL "UPDATE users SET best_game = $NUMBER_OF_GUESSES WHERE username='$USERNAME'")
+      UPDATE_BEST_GAME=$($PSQL "UPDATE users SET best_game = $NUMBER_OF_GUESSES WHERE user_id=$USER_ID")
     fi
     break
   elif [[ $GUESS -gt $SECRET_NUMBER ]]
