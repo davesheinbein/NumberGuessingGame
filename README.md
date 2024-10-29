@@ -8,8 +8,9 @@
 4. [Usage](#usage)
 5. [Example Session](#example-session)
 6. [Database Structure](#database-structure)
-   - [Entity-Relationship Diagram](#entity-relationship-diagram)
-7. [Flowchart](#flowchart)
+7. [Entity-Relationship Diagram](#entity-relationship-diagram)
+8. [Flowchart](#flowchart)
+9. [Commit Changes](#commit-changes)
 
 ## Project Overview
 
@@ -42,6 +43,7 @@ View the project requirements here: [Number Guessing Game project](https://www.f
 2. **Database Setup**:
 
    - Connect to PostgreSQL and create the database:
+
      ```bash
      psql --username=freecodecamp --dbname=postgres -c "CREATE DATABASE number_guess;"
      ```
@@ -92,7 +94,7 @@ You guessed it in 11 tries. The secret number was 564. Nice job!
 
 ## Database Structure
 
-### Entity-Relationship Diagram (ERD)
+## Entity-Relationship Diagram (ERD)
 
 The ERD shows the structure of the `users` table used to store user data for the game.
 
@@ -149,14 +151,19 @@ The following flowchart outlines the game process, from user login to guessing a
 ## Commit Changes
 
 # Make some changes and commit them
+
 # For example, adding input validation
+
 git commit -am "fix: add input validation for username"
 
 # Another change, for example, improving user feedback
+
 git commit -am "feat: improve user feedback messages"
 
 # Another change, for example, refactoring code
+
 git commit -am "refactor: clean up code structure"
 
 # Another change, for example, adding error handling
+
 git commit -am "chore: add error handling for database operations"
