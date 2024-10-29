@@ -7,6 +7,13 @@ PSQL="psql --username=freecodecamp --dbname=number_guess -t --no-align -c"
 echo "Enter your username:"
 read USERNAME
 
+# Validate username input
+if [[ -z $USERNAME || ${#USERNAME} -gt 22 ]]
+then
+  echo "Invalid username. Please enter a username with 1-22 characters."
+  exit 1
+fi
+
 # Check if the username exists
 USER_ID=$($PSQL "SELECT user_id FROM users WHERE username='$USERNAME'")
 
