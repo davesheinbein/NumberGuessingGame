@@ -109,6 +109,20 @@ The ERD shows the structure of the `users` table used to store user data for the
 +-------------+       +-----------------------------+
 ```
 
+### Explanation of Keys
+
+- **Primary Key (PK)**:
+
+  - `user_id`: This is the primary key for the `users` table. It uniquely identifies each user and is defined as `SERIAL`, which means it will auto-increment with each new record. It ensures that each user can be uniquely identified in the table.
+
+- **Unique Key**:
+
+  - `username`: This field is defined as `VARCHAR(22) UNIQUE`, meaning it can store up to 22 characters and must be unique for each user. This ensures that no two users can have the same username.
+
+- **Other Attributes**:
+  - `games_played`: This field stores the number of games played by the user and is defined as an `INTEGER`.
+  - `best_game`: This field stores the best game score (fewest guesses) of the user and is also defined as an `INTEGER`.
+
 ## Flowchart
 
 The following flowchart outlines the game process, from user login to guessing and updating scores:
